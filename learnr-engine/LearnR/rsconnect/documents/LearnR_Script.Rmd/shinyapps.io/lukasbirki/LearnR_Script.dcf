@@ -1,0 +1,13 @@
+name: LearnR_Script
+title: LearnR_Script
+username:
+account: lukasbirki
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4448189
+bundleId: 6740394
+url: https://lukasbirki.shinyapps.io/LearnR_Script/
+when: 1673898822.57249
+lastSyncTime: 1673898822.57252
+asMultiple: FALSE
+asStatic: FALSE

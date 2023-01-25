@@ -1,5 +1,3 @@
-# Welcome
-
 This folder contains a list of tutorials that cover the basics of R, including data types, variables, functions, and iterations.
 
 The tutorials are presented in the form of interactive tutorials, each of which can be run in a browser such as Google Chrome or Mozilla Firefox. 

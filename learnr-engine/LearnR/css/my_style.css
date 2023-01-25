@@ -1,0 +1,26 @@
+
+a {
+  color: black;
+}
+
+a:hover {
+  color: black;
+}
+
+.warning {
+  font-weight: bold;
+}
+
+.warning::before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f06a ";
+}
+
+test {
+  content: "<span class="warning">**Task**</span>:"
+}
+
+
+
+
+
