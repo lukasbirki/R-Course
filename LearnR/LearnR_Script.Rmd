@@ -1440,8 +1440,8 @@ Iteration describes the possibility to repeatedly execute code. In R this is oft
 However sometimes you need more powerful tools to execute code repeatedly. 
 - `for`-loop
 - `Map()` functions from the “purrr” package (from the tidyverse)
-***
 
+***
 
 There are three parts to a loop. The picture below outlines these parts`
 
@@ -1498,18 +1498,6 @@ result_for_loop
 ### Exercises Lession 5
 
 
-```{r i1, exercise=TRUE}
-
-```
-
-```{r i1-solution}
-
-```
-
-```{r i2, exercise=TRUE}
-
-```
-
 ```{r i2-solution}
 
 ```
@@ -1530,4 +1518,21 @@ result_for_loop
 
 ```
 
+## 6. Outlook
+
+Great, you successfully spend your first day learning and working with R. 
+However, to really unleash the potential of R, we usually have R locally installed on our device and execute code in an Integrated Development Environment (IDE) called RStudio. 
+
+<img src="./images/rstudio.png" width="355"/>
+
+
+- You can install R from the “cran” website, where you have options for Mac, Windows, and Linux. https://cran.r-project.org/ 
+- You can install RStudio (please do after installing R) from the RStudio website, where you have options for Mac, Windows, and Linux. https://www.rstudio.com/products/rstudio/download/#download 
+
+If you run into problems during the installation of R and/or RStudio, we suggest you first have a look at one of the following YouTube videos detailing the installation process for different operating systems:
+- Mac: https://www.youtube.com/watch?v=LanBozXJjOk
+- Linux (Ubuntu): https://www.youtube.com/watch?v=24TtO1fR6SI
+- Windows: https://www.youtube.com/watch?v=_2sewGCA0y4
+
+If that does not work for you, please contact Matthias or Lukas (matthias.roth@gesis.org & Lukas.Birkenmaier@gesis.org) and we will try to solve the problem together.
 
