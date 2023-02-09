@@ -10,6 +10,7 @@ css: css/my_style.css
 editor_options: 
   markdown: 
     wrap: 72
+urlcolor: blue
 ---
 
 ```{r setup, include=FALSE}
@@ -59,7 +60,7 @@ to say that we will casually add GIFs to support you on your journey!
 R is a widely used statistical programming language popular with users
 in academia and industry. It was developed in the early 1990s by Ross
 Ihaka and Robert Gentleman and released in 2000. R is constantly being
-further developed by "The R Foundation". In addition to its inherent functionality, it also allows the use of external packages (see below) - quasi complete computational commands or data.
+developed further by "The R Foundation". In addition to its inherent functionality, it also allows the use of external packages which can be used to add functionality to R or access data.  
 
 Companies such as Facebook, Google, Twitter or Airbnb also use R, e.g.
 for advertising effectiveness, economic forecasts, statistical analyses
@@ -73,23 +74,23 @@ or data visualization.
 
 -   R has a simple syntax similar to English.
 -   R is developed under an open source license, which allows it to be
-    installed for free and even used for commercial purposes.
+    installed for free and even be used for commercial purposes.
 -   R works on multiple platforms (Windows, Mac and Linux).
 -   R has a large community. Many developers provide packages for the
-    general public.
+    general public. Additionally, there is a lot of free educational material
+    available online.
 
 ## Teaser
 
 In this short teaser, we will give a preview of what a typical R-workflow looks like. By the end of this course, you will be fully equipped to do the same operations by your own. 
 To execute the code, either...
 
--   Put your cursor on the line that contains R code and press "Run" on
-    the top right side of this panel
+-   Put your cursor on the line that contains R code and press “Run” on the top right side of this panel
 -   Put your cursor on the line that contains R code and press ctrl +
     enter (german keyboard: strg + enter)
 
 ***
-For this tutorial, we will use the [**Starwars character**](https://dplyr.tidyverse.org/reference/starwars.html) dataset. This dataset contains a range of information on Starwars Characters, such as their names, sex and gender, body features, or from which planet they are from.
+For this tutorial, we will use the [**Starwars character**](https://dplyr.tidyverse.org/reference/starwars.html) dataset. This dataset contains a range of information on Starwars characters, such as their names, sex and gender, body features, or from which planet they are from.
 ![](https://media.giphy.com/media/YRbqmR6ucyRr7Hd0fp/giphy.gif)
 
 
@@ -112,7 +113,7 @@ To get a summary of the dataset, we can use the `glimpse()` function
 glimpse(df)
 ```
 
-The function `dim()` gives us the dimensions of the dataset.
+The function `dim()` gives us the dimensions of the dataset
 
 ```{r demo3, exercise=TRUE}
 dim(df)
@@ -121,8 +122,7 @@ dim(df)
 As we can see, our dataset has a total of 87 rows, and 14 columns!
 
 ***
-Lets calculate the correlation between characters height and their mass
-
+Now lets have a look at our variables of interest - the height (in cm) and mass (in kg) of the Starwars characters. 
 First, we can inspect the distribution of height and mass in more detail
 
 ```{r demo55, exercise=TRUE}
@@ -132,7 +132,7 @@ print("Summary statistics for the variable mass")
 summary(df$mass)
 ```
 
-And calculate Pearsons r
+Lets calculate the correlation between characters height and their mass using Pearson's R
 
 ```{r demo4, exercise=TRUE}
 pearson_r <- cor.test(df$height, # defines variable 1
@@ -144,7 +144,7 @@ print(pearson_r)
 ```
 
 The correlation coefficient is low (r = .13) and the p-value is not significant (p = 0.312)!
-So should we conclude that the relationship between `mass` and `height` is not significant in the Starwars universe? **No!**.
+So should we conclude that the relationship between `mass` and `height` is not significant in the Starwars universe? **No!**
 
 Maybe we can learn more from plotting the data
 
@@ -165,8 +165,9 @@ df |> dplyr::filter(mass > 1000)
 ![](https://media.giphy.com/media/3ornjSExjtUXRXY784/giphy.gif)
 
 ***
-
-Now let us remove Jabba and rerun the previous analyis
+Although an interesting character, Jabba does not seem to come from the same 
+population as the rest of the Starwars characters.
+Let us remove Jabba and rerun the previous analysis
 
 ```{r demo7, exercise=TRUE}
 df_adj <- df |>  dplyr::filter(mass <500) 
@@ -220,14 +221,13 @@ ggplot(df_adj |>  dplyr::filter(mass <500), aes(x = height, y = mass)) +
 
 ```
 
-That`s it! In the following chapters, you will learn how to repeat this workflow (any many things more)!
+That`s it! During the course of our workshop, you will learn how to repeat this workflow (any many things more)!
 
 ## 1. First Steps
 
 You can execute R code in a few ways:
 
--   Put your cursor on the line that contains R code and press "Run" on
-    the top right side of this panel
+-   Put your cursor on the line that contains R code and press “Run” on the top right side of this panel
 -   Put your cursor on the line that contains R code and press ctrl +
     enter (german keyboard: strg + enter)
 
@@ -350,8 +350,8 @@ As you can see, logical operators work with numbers as well
 
 > `10 != 10 & 10 == 10` is the same as `F & T`
 
-It should not suprise you that there are a lot of logical operators. The
-most common being
+It should not surprise you that there are a lot of logical operators. The
+most common ones being
 
 -   `>` (larger than )
 -   `<` (smaller than)
@@ -363,17 +363,17 @@ most common being
 -   `|` (or)
 
 **We are almost done**. 
-But before we will train our progress, we to further get to know the building blocks of R code.
+But before we will train our progress, we need to further get to know the building blocks of R code.
 
 ***
 
 ### Functions
 
 > Functions are "self contained" modules of code that accomplish a
-> specific task. Functions usually take in some sort of data structure,
-> process it, and return a result
+> specific task. Functions usually take in some sort of data,
+> process it, and return a result.
 
-One (of many) function in R is the `sqrt()` function. Maybe you can find
+One of many functions in R is the `sqrt()` function. Maybe you can find
 out what it does by executing the next line?
 
 ```{r function_1, exercise=TRUE}
@@ -389,8 +389,8 @@ round(2.2412)
 
 Often, we do not know what functions exactly do. In this case, we can
 access the documentation using the `?` in front of the function body or
-search for the documentation online [see here for an
-example](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/Round).
+search for the documentation online [<span style="color: blue;"> see here for an
+example</span>](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/Round).
 
 > Function documentation is used to describe the **purpose, input,
 > output, and other details of a function**. Function documentation is
@@ -486,7 +486,7 @@ to first execute ten plus one
 
 #### Logical Operations
 
-<span class="warning">**Task**</span>: Check whether `10^23` is larger than `5^46`.
+<span class="warning">**Task**</span>: Check whether `10^23` is larger than `5^46`
 
 ```{r log1, exercise=TRUE}
 
@@ -612,21 +612,22 @@ By executing the code, you have just created a new variable in the local R
 environment
 
 > "The R environment can be thought of as a *collection of objects*
-> (functions, variables etc.). Any objects created are automatically
-> saved and can be reused later"
+> (functions, variables etc.) that are availiable to you. Any objects created are automatically
+> saved and can be reused later."
 
 **Important**: In this tutorial, each code chunk holds its own R environment.
-As you will see later, RStudio is able to store - and reuse - all variables globally.
+As you will see later, RStudio is able to store - and reuse - all variables you create.
 
 Please execute the following code. What happens here?
 
 ```{r v2, exercise =TRUE}
 some_variable <- 15  
-print(some_variable)
+some_variable
 ```
 
-The object `some_variable` now contains the value assigned `15`.
-Now, we can even do math with the variable
+The object `some_variable` now contains the value assigned `15`. Just writing and 
+executing `some_variable` will print the variable to the screen.
+Now, we can do math with the variable
 
 ```{r v3, exercise =TRUE}
 some_variable <- 15 
@@ -644,26 +645,27 @@ An example:
 
 ```{r v20, exercise = TRUE}
 a_vector <- c(1,2,3,4) 
-print(a_vector)
+a_vector
 ```
 
 If you want to create a character vector, all you need to make sure is to use elements of the same data type
 
 ```{r v21, exercise = TRUE}
 char_vec <- c("This is", "a","character vector", "with 4 elements.")
-print(char_vec)
+char_vec
 ```
 
 Same goes with logicals
 
 ```{r v222, exercise = TRUE}
 log_vec <- c(T,T,F,F)
-print(log_vec)
+log_vec
 ```
 
 ***
 
-You can access the elements of an vector with the square brackets `[]`
+You can access the elements of an vector with the square brackets `[]`. This operation
+is called "indexing" because you use a number as an index to access an element in the vector.
 ```{r v22, exercise = TRUE}
 char_vec <- c("This is", "a","character vector", "with 4 elements.")
 char_vec[3] # Getting the third element of char_vec
@@ -685,31 +687,33 @@ char_vec[-3] # ?
 
 ***
 
-We can also use functions to create new vector!
+We can also use functions to create a new vector!
 
 ```{r v23, exercise = TRUE}
 a_vector <- c(1,2,3,4)
-print(a_vector)
+a_vector
 ```
 
 ```{r v25, exercise = TRUE}
 a_vector <- c(1,2,3,4)
 b_vector <- rep(x = a_vector, times = 2) # creates a new vector which repeats "a_vector" two times.
-print(b_vector)
+b_vector
 ```
 
-If you know the position of the arguments, you can omit naming the arguments.
+If you know the position of the arguments in a function (in this case "x" and "times"), you can omit naming the arguments and just supply the arguments in the right order.
 
 ```{r v26, exercise = TRUE}
 a_vector <- c(1,2,3,4)
 b_vector <- rep(a_vector, 2) # creates a new vector which repeats "a_vector" two times.
-print(b_vector)
+b_vector
 ```
 
-Lastly, we can also create completely new vectors
+Finally, we can also create completely new vectors
 
 ```{r v27, exercise = TRUE}
-seq(1,10,0.01) # Creates a numerical vector with 100 elements. Can you think of what this function does (before running the code) 
+seq(from = 1,
+    to = 10,
+    by = 0.01) # Creates a numerical vector with 100 elements. Can you think of what this function does (before running the code) 
 ```
 
 ### Exercises Lession 2
@@ -722,15 +726,17 @@ Great, now lets practice everything we have learned so far.
 
 #### Vectors and vector operations
 
-<span class="warning">Task</span>: Now let us calculate the mean of the numbers `3,4,5,3,5`. 
+<span class="warning">Task</span>: Let us calculate the mean of the numbers `3,4,5,3,5`. The mean is
+calculated by summing all numbers in the vector and then dividing the result of the summation by the number
+of elements, in this case 5.
 We can make the calculation easier to read by splitting the calculation into two
 parts:
 
 1. First, save the results of the summation in a variable called
-   `result_sum`
+   `result_sum`.
 2. Second, divide the variable `result_sum` by five and save the
    results in the new variable `result_mean`.
-3. Print the `result_mean` vector using the `print()` function
+3. Print the `result_mean` vector to the screen.
 
 ```{r f1, exercise=TRUE}
 
@@ -739,13 +745,10 @@ parts:
 ```{r f1-solution}
 result_sum <- 3+4+5+3+5
 result_mean <- result_sum/5
-print(result_mean)
+result_mean
 ```
 
-<span class="warning">Task</span>: Create your own vector with character values and save it in a variable called "character_variable"-
-To signify that a value is a character you need to quote it (`"text"`).
-
-Then print the vector out by using `print(character_variable)`
+<span class="warning">Task</span>: Create your own vector with character values and save it in a variable called "character_variable". To signify that a value is a character you need to quote it (`"text"`). Then print the vector to the screen
 
 ```{r vo1, exercise=TRUE}
 
@@ -753,12 +756,11 @@ Then print the vector out by using `print(character_variable)`
 
 ```{r vo1-solution}
 character_variable <- c("R","is a great","Language") #This is just an example
-print(character_variable)
+character_variable
 ```
 
 ***
-<span class="warning">Task</span>: Create a vector `log_vec`with logicals (`T` or `F`). Then print the vector out by using `print(log_vec)`
-
+<span class="warning">Task</span>: Create a vector `log_vec`with logicals (`T` or `F`). Then print the vector to the screen
 
 ```{r vo2, exercise=TRUE}
 
@@ -769,7 +771,7 @@ log_vec <- c(T,F,T,T) #This is just an example
 print(log_vec)
 ```
 ***
-<span class="warning">Task</span>: Use the colon `:` operator to create a numerical vector with 10 elements ranging from 1 to 10. You don`t have to save this vector.
+<span class="warning">Task</span>: Use the colon `:` operator to create a numerical vector with 10 elements ranging from 1 to 10. You don`t have to save this vector
 
 ```{r vo3, exercise=TRUE}
 
@@ -779,7 +781,7 @@ print(log_vec)
 1:10
 ```
 ***
-<span class="warning">Task</span>: Try to create the same vector as above but in reversed order using the colon ":" operator. 
+<span class="warning">Task</span>: Try to create the same vector as above but in reversed order using the colon ":" operator
 
 ```{r vo4, exercise=TRUE}
 
@@ -790,7 +792,7 @@ print(log_vec)
 ```
 ***
 <span class="warning">Task</span>: Use the `seq()` function to create a sequence from 0 to 1 in 0.1 increments.
- If you want to know the arguments to the `seq()` function type `help(seq)`.
+ If you want to know the arguments to the `seq()` function type `help(seq)`
  
 ```{r vo5, exercise=TRUE}
 
@@ -801,7 +803,7 @@ seq(0,1,0.1)
 ```
 ***
 <span class="warning">Task</span>: Use the `rep()` function to create a character vector with 5 repetitions of `"a"`.
-If you want to know the arguments to the `rep()` function type `help(rep)`.
+If you want to know the arguments to the `rep()` function type `help(rep)`
 
 ```{r vo6, exercise=TRUE}
 
@@ -813,27 +815,28 @@ rep("a",5)
 
 ***
 <span class="warning">Task</span>: Use the `rep()` function to create a character vector `character_variable_doubled` with 5 repetitions of the  variable `character variable` which is created in the first line.
-Then print the vector out by using `print(character_variable_doubled)`
+Then print the vector to the screen
 
 ```{r vo7, exercise=TRUE}
 character_variable <- c("a","b","c")
 # Here comes your code
-
+character_variable_doubled <- 
 #Last step
-print(character_variable_doubled)
+character_variable_doubled
 
 ```
 
 ```{r vo7-solution}
 character_variable <- c("a","b","c")
 character_variable_doubled <- rep(character_variable,5)
-print(character_variable_doubled)
+character_variable_doubled
 ```
 
 
 #### Accessing elements of a vector 
 
-Let`s keep in mind: 
+Lets keep in mind:
+
 - You can access elements of a vector using square brackets `[]`. 
 - `vec[1]`extracts the first element of a vector
 - `vec[c(1,2)] ` uses a second vector for multiple indices. Extracts first and second element
@@ -842,6 +845,10 @@ Let`s keep in mind:
 <span class="warning">Task</span>: Execute the following code. Please try to find out what the ``rnorm() function does`.
 
 ```{r vo8, exercise=TRUE}
+a_random_vec <- rnorm(1000) 
+```
+
+```{r vo8-solution}
 a_random_vec <- rnorm(1000) #draws 1000 random numbers from the standard normal distribution
 ```
 
@@ -1068,9 +1075,9 @@ ifelse(test = num_vec  > 50,yes = 1, no = 0)
 
 ***
 
-Now lets work on a more practical example. We have a vector of birth years from 1950 to 2000
-
-`birth_year_vec <- sample(x = 1950:2000,size = 10000,replace = T) #the sample function creates a vector of random draws from 1950 to 2000`
+Now lets work on a more practical example. We have conducted a survey and obtained a
+vector of birth years from the respondents. The earliest year of birth in the survey is 1950, the latest
+is 2000. We want to check if a specific year of birth is in the vector of responses.
 
 You can check whether one ore multiple values are in a vector by using the `%in%` operator.
 
@@ -1086,7 +1093,7 @@ a_vec <- c(1,2,3,4)
 c(3,5) %in% a_vec # Shows whether 3 and 5 are in "a_vec" 
 ```
 
-<span class="warning">Task</span>: Check whether the year 1987 is in `birth_year_vec`
+<span class="warning">Task</span>: Now to our example: Check whether the year 1987 is in `birth_year_vec`
 
 ```{r vf62, exercise=TRUE}
 birth_year_vec <- sample(x = 1950:2000,size = 10000,replace = T) #the sample function creates a vector of random draws from 1950 to 2000
@@ -1101,7 +1108,7 @@ birth_year_vec <- sample(x = 1950:2000,size = 10000,replace = T)
 ```
 
 
-<span class="warning">Task</span>: Write an `ifelse()` test that checks which elements of `birth_year_vec` are larger than 1980, but smaller than 1990.
+<span class="warning">Task</span>: Write an `ifelse()` test that checks which elements of `birth_year_vec` are larger than 1980, but smaller than 1990 (i.e. are in between 1980 and 1990)
 
 ```{r vf63, exercise=TRUE}
 birth_year_vec <- sample(x = 1950:2000,size = 10000,replace = T) 
@@ -1117,9 +1124,9 @@ ifelse(birth_year_vec > 1980 & birth_year_vec < 1990,1,0)
 
 #### Vector operations - numeric II
 
-Reducing vectors to a single number is a common task in statistics. Mean, variance or correlations are all are examples of this. Because R is a programming language for statistics, many common statistics are implemented directly as functions. 
+Reducing vectors to a single number is a common task in statistics. Mean, variance or correlations are all are examples of this. Because R is a programming language for statistics, many common statistics are directly available as functions. 
 
-<span class="warning">Task</span>: Please create a numeric vector `num_vec` and calculate at least three summary statistics (e.g., `mean()`, `var()`, `sd()`, etc.)
+<span class="warning">Task</span>: Please create a numeric vector `num_vec` with the values 50,100,24,25,342 and calculate at least three summary statistics (e.g., `mean()`, `var()`, `sd()`, etc.)
 
 ```{r vf66, exercise=TRUE}
 
@@ -1127,7 +1134,7 @@ Reducing vectors to a single number is a common task in statistics. Mean, varian
 
 ```{r vf66-solution}
 #Example
-num_vec <- c(50,100,24,25,342,754,324,123)
+num_vec <- c(50,100,24,25,342)
 
 mean(num_vec)
 var(num_vec)
@@ -1135,7 +1142,7 @@ sd(num_vec)
 
 ```
 
-Often times we encounter missing values in our data. In R missing data is signified as `NA`.
+Often times we encounter missing values in our data. In R missing data is signified as `NA`
 
 
 ```{r vf67}
@@ -1145,7 +1152,7 @@ num_vec <- c(50,100,24,25,342,754,324,123,NA)
 <span class="warning">Task</span>: Try the `mean()` function again with `num_vec.` 
 Spoiler: It won't work without some light modification.
 
-Check the help page of mean with `help(mean)` and try to solve the problem. 
+Check the help page of mean with `help(mean)` and try to solve the problem 
 
 ```{r vf661, exercise=TRUE}
 num_vec <- c(50,100,24,25,342,754,324,123,NA)
@@ -1158,7 +1165,7 @@ mean(num_vec,na.rm = T)
 ```
 
 Finally, we often want to calculate the correlation between two variables.
-A very basic way to do this in R is the `cor()` function. Try it with `num_vec` and `num_vec_2`.
+A very basic way to do this in R is the `cor()` function. Try it with `num_vec` and `num_vec_2`
 
 ```{r vf662, exercise=TRUE}
 num_vec <- c(50,100,24,25,342,754,324,123)
@@ -1173,7 +1180,7 @@ num_vec_2 <- c(235,121,46,765,23,321,124,975)
 cor(num_vec,num_vec_2)
 ```
 
-There is also a t-test function. Use Google to find the right function in R and use it with `num_vec` and `num_vec_2`.
+There is also a t-test function. Use Google to find the right function in R and use it with `num_vec` and `num_vec_2`
 
 ```{r vf664, exercise=TRUE}
 num_vec <- c(50,100,24,25,342,754,324,123)
@@ -1190,7 +1197,7 @@ t.test(num_vec,num_vec_2)
 
 #### Vector operations - character
 
-`paste()` is a function that works with text data. It can be used to merge two or more separate text variables into one
+`paste()` is a function that works with text data. It can be used to merge two or more separate text variables into one.
 
 Please execute the following code
 
@@ -1210,7 +1217,7 @@ last_names <- c("Skywalker","Vader","Solo")
 paste(first_names,last_names)
 ```
 
-<span class="warning">Task</span>: Please use the same command but add "is a fictional character" (with the quotation marks) as a third element to the `paste()` function?
+<span class="warning">Task</span>: Please use the same command but add "is a fictional character" (with the quotation marks) as a third element to the `paste()` function. What happens?
 
 ```{r vf65, exercise=TRUE}
 first_names <- c("Luke","Darth","Han"); last_names <- c("Skywalker","Vader","Solo") #this loads the character variables
@@ -1224,7 +1231,7 @@ paste(first_names,last_names,"is a fictional character")
 
 ```
 
-<span class="warning">Task</span>: Check out the `paste()` help page and find how to add a comma separating the terms
+<span class="warning">Task</span>: Check out the `paste()` help page and find how you can automatically can add a comma between all elements (i.e. the result for the first element should be "Luke, Skywalker)
 
 ```{r vf668, exercise=TRUE}
 first_names <- c("Luke","Darth","Han"); last_names <- c("Skywalker","Vader","Solo") #this loads the character variables
@@ -1233,12 +1240,12 @@ first_names <- c("Luke","Darth","Han"); last_names <- c("Skywalker","Vader","Sol
 
 ```{r vf668-solution}
 first_names <- c("Luke","Darth","Han"); last_names <- c("Skywalker","Vader","Solo") #this loads the character variables
-paste(first_names,last_names,"is a fictional character",sep = ",")
+paste(first_names,last_names,sep = ",")
 ```
 
 ***
 
-**Great, you are making good progress**
+**Great, you are making good progress!**
 
 ![](https://media.giphy.com/media/2wX0gLjH30bzzxpP8K/giphy.gif)
 
@@ -1249,11 +1256,11 @@ paste(first_names,last_names,"is a fictional character",sep = ",")
 R gives you the ability to create your own functions. Functions are at the essence of working with R. 
 They allow to repeat a certain amount of code multiple times. 
 
-There are several elements to a function. The picture below outlines these elements on the function `introduction()``
+There are several elements to a function. The picture below outlines these elements on the function `introduction()`:
 
 <img src="./images/function.jpg" width="775" dpi="420"/>
 
-1. **Function name**: You can name a function using the `<- operator`. In our case, the function is called "introduction"
+1. **Function name**: You can name a function using the `<-` operator. In our case, the function is called "introduction"
 2. **Function arguments**: You can specify which input a function takes ("arguments"). In our case, there is one argument called "name" 
 3. **Function body**: The function body contains the code of the function. The code within a function body uses the input provided by the arguments and executes the code within the function body. In our case, the function body creates a new variable `greeting` using the `paste()` function from the character string "Hello, its" and the character string provided by the argument "name". 
 It is good practice to define what each function should return. In our case, we want to return the final introduction sentence which is saved in the variable `greeting`. 
@@ -1339,7 +1346,7 @@ add_two_numbers(15,30)
 
 #### invert_num_vec()
 
-Now we will Write a function to solve a (slightly) more common problem. 
+Now we will write a function to solve a (slightly) more complex problem. 
 A numerical vector can be inverted by subtracting it from its maximum + 1
 
 Try it out below
@@ -1355,7 +1362,7 @@ Now, the vector is inverted!
 
 We can use a function to automate this process for future applications. You can use the `max()` function to get the maximum of any vector.
 
-<span class="warning">Task</span>: Create the function `invert_num_vec()` and invert the values of `num_vec`.
+<span class="warning">Task</span>: Create the function `invert_num_vec()` and invert the values of `num_vec`
 
 ```{r fd5, exercise=TRUE}
 num_vec <- c(1,2,3,4,5,6,10) #This just loads the vector
@@ -1401,7 +1408,7 @@ What is the difference? Yes, the NA!
 
 ***
 
-<span class="warning">Task</span>: Please adjust the code of the function we have created to ignore the NA´s. 
+<span class="warning">Task</span>: Please adjust the code of the function we have created to ignore the NAs. 
 
 (Hint: Maybe you want to have a look at the documentation of the `max()` function)
 
@@ -1525,7 +1532,7 @@ Great, you successfully spend your first day learning and working with R.
 Now we are fully equipped to start hands on data analysis. In R, this usually means working with dataframes. 
 For now, the dataframe `df` is already loaded. We have gotten to know the dataframe already in the Teaser Section.
 
-Nedless to say, a dataframe looks like this
+Needless to say, a dataframe looks like this
 
 ```{r o1}
 print(df)
