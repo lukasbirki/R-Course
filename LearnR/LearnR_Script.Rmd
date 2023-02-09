@@ -666,6 +666,7 @@ log_vec
 
 You can access the elements of an vector with the square brackets `[]`. This operation
 is called "indexing" because you use a number as an index to access an element in the vector
+
 ```{r v22, exercise = TRUE}
 char_vec <- c("This is", "a","character vector", "with 4 elements.")
 char_vec[3] # Getting the third element of char_vec
