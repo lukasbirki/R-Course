@@ -966,7 +966,7 @@ ifelse(test = a_vector > 20, yes = 1, no = 0)
 But there are also many functions which reduce a vector to a single value (e.g., `mean()`, `sd()`, `sum()`, `min()`, `max()`,
 `length()`)
 
-Please try to find out what the following functions do! 
+Examples: 
 
 `mean()`
 
@@ -1492,30 +1492,89 @@ for(i in seq_along(a_vector)){
 }
 
 result_for_loop
+
+
+
+# Do the same with map_dbl()
+library(purrr) # load the library from the tidyverse
+result_map <- map_dbl(a_vector,add_one) 
+result_map
 ```
 
 
 ### Exercises Lession 5
 
+To practice iteration we will reimplement the following expression x^x as a for loop and as a map call.
+
+First we will use a for-loop
+
+```{r i2, exercise=TRUE}
+x <- 1:4
+x^x # We want to raise each element to the power of its own value.
+    # In this case: 1^1, 2^2, 3^3, 4^4 
+# Here is the function which will raise an input value to the power of its own value
+raise_to_own_pwr <- function(a_number){
+  result <- a_number^a_number
+  return(result)
+}
+
+# Write a for-loop like in the section above to create a new vector which raises
+# each element of vector x to its own power
+```
+
+***
+
+Now you can try to use the map_dbl function as in the example above
 
 ```{r i2-solution}
 
+x <- 1:4
+x^x # We want to raise each element to the power of its own value.
+    # In this case: 1^1, 2^2, 3^3, 4^4 
+# Here is the function which will raise an input value to the power of its own value
+raise_to_own_pwr <- function(a_number){
+  result <- a_number^a_number
+  return(result)
+}
+
+for(i in 1:length(x)){
+  x[i]^x[i]
+}
 ```
 
+
 ```{r i3, exercise=TRUE}
+library(purrr) # purrr is a package part of the tidyverse
+
+# Step 1 - Write a function which takes one element and transforms it 
+
+# We use the same function as above
+raise_to_own_pwr <- function(x){
+  result <- x^x
+  return(result)
+}
+
+# Step 2 - Use map_dbl to apply the function to every element of the vector x
+# and turns it into a vector of doubles (fractional numbers like 2.342)
+x <- 1:4 
 
 ```
 
 ```{r i3-solution}
+library(purrr) # purrr is a package part of the tidyverse
 
-```
+# Step 1 - Write a function which takes one element and transforms it 
 
-```{r i4, exercise=TRUE}
+# We use the same function as above
+raise_to_own_pwr <- function(x){
+  result <- x^x
+  return(result)
+}
 
-```
-
-```{r i4-solution}
-
+# Step 2 - Use map_dbl to apply the function to every element of the vector x
+# and turns it into a vector of doubles (fractional numbers like 2.342)
+x <- 1:4 
+map_dbl(x,raise_to_own_pwr)
 ```
 
 ## 6. Outlook
